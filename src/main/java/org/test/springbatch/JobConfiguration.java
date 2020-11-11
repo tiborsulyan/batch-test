@@ -41,7 +41,6 @@ class JobConfiguration {
     }
 
     @Bean
-    @StepScope
     StaxEventItemWriter<JAXBItem> writer() throws IOException {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setClassesToBeBound(JAXBItem.class);
