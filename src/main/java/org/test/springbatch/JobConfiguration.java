@@ -41,16 +41,20 @@ class JobConfiguration {
     }
 
     @Bean
-    StaxEventItemWriter<JAXBItem> writer() throws IOException {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setClassesToBeBound(JAXBItem.class);
-        Path tempFile = Files.createTempFile("test", ".xml");
+    StaxEventItemWriter<JAXBItem> writer(Jaxb2Marshaller marshaller) throws IOException {
         return new StaxEventItemWriterBuilder<JAXBItem>()
                 .name("fileWriter")
-                .resource(new FileSystemResource(tempFile))
+                .resource(new FileSystemResource(Files.createTempFile("test", ".xml")))
                 .rootTagName("test")
                 .marshaller(marshaller)
                 .build();
+    }
+
+    @Bean
+    Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setClassesToBeBound(JAXBItem.class);
+        return marshaller;
     }
 
     @XmlRootElement(name = "item", namespace = "https://www.example.com/test")
