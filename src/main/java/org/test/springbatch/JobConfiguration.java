@@ -2,7 +2,9 @@ package org.test.springbatch;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.*;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.batch.item.support.PassThroughItemProcessor;
@@ -16,7 +18,6 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 
 @Configuration
